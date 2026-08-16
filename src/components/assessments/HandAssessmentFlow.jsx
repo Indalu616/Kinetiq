@@ -3,6 +3,7 @@ import { useHandAssessment } from '../../hooks/useHandAssessment';
 import { saveSession, exportSessionAsJSON as exportJSON, exportRecordAsCSV } from '../../lib/storage';
 import TestStage from './TestStage';
 import StatCard from '../StatCard';
+import MovementDemo from '../demo/MovementDemo';
 
 const DURATION_OPTIONS = [10, 15, 20];
 
@@ -160,10 +161,13 @@ export default function HandAssessmentFlow({ onExit, onSaved }) {
             notDetectedLabel="Hold a hand up, 30–50cm from the camera"
             badge={test.running ? `${test.remainingSec}s left` : null}
           />
-          <div className="rounded-2xl border border-line bg-panel p-4 text-[13px] leading-relaxed text-ink-soft">
-            <span className="font-medium text-ink">How it works —</span> hold one or both hands up so your thumb and
-            fingers are visible, then tap your thumb and index finger together as many times as you can before the
-            timer runs out.
+          <div className="flex items-center gap-4 rounded-2xl border border-line bg-panel p-4">
+            <p className="flex-1 text-[13px] leading-relaxed text-ink-soft">
+              <span className="font-medium text-ink">How it works —</span> hold one or both hands up so your thumb
+              and fingers are visible, then tap your thumb and index finger together as many times as you can before
+              the timer runs out.
+            </p>
+            <MovementDemo type="hand-tap" size="sm" showCaption={false} className="shrink-0" />
           </div>
         </div>
 

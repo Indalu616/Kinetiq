@@ -12,6 +12,7 @@ import AssessmentsHome from './components/assessments/AssessmentsHome';
 import SitToStandFlow from './components/assessments/SitToStandFlow';
 import ArmAssessmentFlow from './components/assessments/ArmAssessmentFlow';
 import HandAssessmentFlow from './components/assessments/HandAssessmentFlow';
+import MovementDemo from './components/demo/MovementDemo';
 
 function ThemeToggle({ theme, onToggle }) {
   return (
@@ -158,11 +159,20 @@ export default function App() {
                   poseDetected={session.poseDetected}
                   lastEvent={session.lastEvent}
                 />
-                <div className="rounded-2xl border border-line bg-panel p-4 text-[13px] leading-relaxed text-ink-soft">
-                  <span className="font-medium text-ink">How it works —</span> stand facing the camera so your
-                  shoulders, elbows and wrists are visible, then raise your arm(s) out to the side and back down.
-                  Each full raise-and-lower is counted as one rep and scored against your target angle and arm
-                  straightness.
+                <div className="flex items-center gap-4 rounded-2xl border border-line bg-panel p-4">
+                  <p className="flex-1 text-[13px] leading-relaxed text-ink-soft">
+                    <span className="font-medium text-ink">How it works —</span> stand facing the camera so your
+                    shoulders, elbows and wrists are visible, then raise your arm(s) out to the side and back down.
+                    Each full raise-and-lower is counted as one rep and scored against your target angle and arm
+                    straightness.
+                  </p>
+                  <MovementDemo
+                    type="shoulder-raise"
+                    mirror={session.side === 'left'}
+                    size="sm"
+                    showCaption={false}
+                    className="shrink-0"
+                  />
                 </div>
               </div>
 

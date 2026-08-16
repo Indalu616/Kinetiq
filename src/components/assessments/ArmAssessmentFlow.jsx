@@ -4,6 +4,7 @@ import { saveSession, exportSessionAsJSON as exportJSON, exportRecordAsCSV } fro
 import TestStage from './TestStage';
 import AngleGauge from '../AngleGauge';
 import StatCard from '../StatCard';
+import MovementDemo from '../demo/MovementDemo';
 
 const REP_OPTIONS = [3, 5, 8];
 
@@ -208,10 +209,19 @@ export default function ArmAssessmentFlow({ onExit, onSaved }) {
             toastEvent={toastEvent}
             badge={test.running ? `Testing: ${phaseLabel} · rep ${phaseCount}/${targetReps}` : null}
           />
-          <div className="rounded-2xl border border-line bg-panel p-4 text-[13px] leading-relaxed text-ink-soft">
-            <span className="font-medium text-ink">How it works —</span> raise your left arm out to the side and
-            back down for {targetReps} reps, then the test automatically switches to your right arm for {targetReps}{' '}
-            more. Keep both shoulders visible throughout.
+          <div className="flex items-center gap-4 rounded-2xl border border-line bg-panel p-4">
+            <p className="flex-1 text-[13px] leading-relaxed text-ink-soft">
+              <span className="font-medium text-ink">How it works —</span> raise your left arm out to the side and
+              back down for {targetReps} reps, then the test automatically switches to your right arm for{' '}
+              {targetReps} more. Keep both shoulders visible throughout.
+            </p>
+            <MovementDemo
+              type="shoulder-raise"
+              mirror={test.phase !== 'right'}
+              size="sm"
+              showCaption={false}
+              className="shrink-0"
+            />
           </div>
         </div>
 

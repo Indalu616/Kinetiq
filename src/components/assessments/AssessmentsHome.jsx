@@ -1,3 +1,5 @@
+import MovementDemo from '../demo/MovementDemo';
+
 const TESTS = [
   {
     id: 'sit-to-stand',
@@ -7,6 +9,7 @@ const TESTS = [
     tech: 'MediaPipe Pose Landmarker — same pipeline as the shoulder-raise coach, pointed at the knee',
     available: true,
     note: 'Needs your hips, knees and ankles in frame — step back or lower the camera.',
+    demo: 'sit-to-stand',
   },
   {
     id: 'arm-movement',
@@ -16,6 +19,7 @@ const TESTS = [
     tech: 'MediaPipe Pose Landmarker — runs the Phase-1 shoulder pipeline once per arm, then compares sides',
     available: true,
     note: 'Runs left arm, then right arm, back to back — keep both shoulders visible.',
+    demo: 'shoulder-raise',
   },
   {
     id: 'hand-assessment',
@@ -25,6 +29,7 @@ const TESTS = [
     tech: 'MediaPipe Hand Landmarker (21 keypoints/hand)',
     available: true,
     note: 'Hold your hand(s) 30–50cm from the camera and tap thumb to index finger repeatedly.',
+    demo: 'hand-tap',
   },
   {
     id: 'walking-gait',
@@ -34,6 +39,7 @@ const TESTS = [
     tech: 'Optical-flow or landmark-trajectory analysis across frames; a tripod / fixed side-on camera',
     available: false,
     note: 'Needs a side-on, multi-frame camera setup rather than a single stationary desk camera — flagged in the spec as optional/stretch and the least camera-friendly test.',
+    demo: 'gait',
   },
 ];
 
@@ -83,15 +89,20 @@ export default function AssessmentsHome({ onSelect }) {
               </span>
             </div>
 
-            <p className="mt-3 text-[13px] leading-relaxed text-ink-soft">{t.measures}</p>
-            <p className="mt-2 text-[11px] text-ink-faint">{t.tech}</p>
-            <p className="mt-3 text-[11px] leading-relaxed text-amber">{t.note}</p>
+            <div className="mt-3 flex items-start gap-4">
+              <div className="min-w-0 flex-1">
+                <p className="text-[13px] leading-relaxed text-ink-soft">{t.measures}</p>
+                <p className="mt-2 text-[11px] text-ink-faint">{t.tech}</p>
+                <p className="mt-3 text-[11px] leading-relaxed text-amber">{t.note}</p>
 
-            {t.available && (
-              <span className="mt-4 text-xs font-medium text-forest transition group-hover:underline">
-                Run this test →
-              </span>
-            )}
+                {t.available && (
+                  <span className="mt-4 inline-block text-xs font-medium text-forest transition group-hover:underline">
+                    Run this test →
+                  </span>
+                )}
+              </div>
+              <MovementDemo type={t.demo} size="sm" showCaption={false} className="shrink-0" />
+            </div>
           </button>
         ))}
       </div>

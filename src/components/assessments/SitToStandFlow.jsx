@@ -4,6 +4,7 @@ import { saveSession, exportSessionAsJSON as exportJSON, exportRecordAsCSV } fro
 import TestStage from './TestStage';
 import AngleGauge from '../AngleGauge';
 import StatCard from '../StatCard';
+import MovementDemo from '../demo/MovementDemo';
 
 const REP_OPTIONS = [3, 5, 10];
 
@@ -158,10 +159,14 @@ export default function SitToStandFlow({ onExit, onSaved }) {
             toastEvent={toastEvent}
             badge={test.running ? `Rep ${test.reps.length}/${targetReps}` : null}
           />
-          <div className="rounded-2xl border border-line bg-panel p-4 text-[13px] leading-relaxed text-ink-soft">
-            <span className="font-medium text-ink">How it works —</span> stand up fully, then sit back down, for{' '}
-            {targetReps} reps as smoothly and quickly as you can. Position the camera so your hips, knees and ankles
-            stay in frame throughout — this test needs more of your body visible than the shoulder raise does.
+          <div className="flex items-center gap-4 rounded-2xl border border-line bg-panel p-4">
+            <p className="flex-1 text-[13px] leading-relaxed text-ink-soft">
+              <span className="font-medium text-ink">How it works —</span> stand up fully, then sit back down, for{' '}
+              {targetReps} reps as smoothly and quickly as you can. Position the camera so your hips, knees and
+              ankles stay in frame throughout — this test needs more of your body visible than the shoulder raise
+              does.
+            </p>
+            <MovementDemo type="sit-to-stand" size="sm" showCaption={false} className="shrink-0" />
           </div>
         </div>
 
