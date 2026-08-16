@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — warm, editorial palette (cream paper + forest ink) */
+/* instead of a dark "AI product" gradient theme. Each token is routed */
+/* through a plain custom property so the whole app can be re-themed  */
+/* at runtime by toggling the .dark class on <html>.                  */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-cream: var(--t-cream);
+  --color-cream-soft: var(--t-cream-soft);
+  --color-panel: var(--t-panel);
+  --color-stage: var(--t-stage);
+  --color-ink: var(--t-ink);
+  --color-ink-soft: var(--t-ink-soft);
+  --color-ink-faint: var(--t-ink-faint);
+  --color-line: var(--t-line);
+  --color-forest: var(--t-forest);
+  --color-forest-strong: var(--t-forest-strong);
+  --color-forest-soft: var(--t-forest-soft);
+  --color-amber: var(--t-amber);
+  --color-amber-soft: var(--t-amber-soft);
+  --color-rust: var(--t-rust);
+  --color-rust-soft: var(--t-rust-soft);
+  --color-gold: var(--t-gold);
+  --color-clay: var(--t-clay);
+
+  /* The camera stage is intentionally always dark, in both light and dark
+     app themes (like a photo/video card floating on a paper background), so
+     its foreground tones are fixed rather than flipped by .dark. */
+  --color-stage-fg: #f1ecdd;
+  --color-stage-accent: #5fa082;
+
+  --font-serif: 'Newsreader', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+:root {
+  --t-cream: #f7f4ec;
+  --t-cream-soft: #fbf9f3;
+  --t-panel: #ffffff;
+  --t-stage: #17140f;
+  --t-ink: #201d17;
+  --t-ink-soft: #6b6355;
+  --t-ink-faint: #a39b89;
+  --t-line: #e6e0cf;
+  --t-forest: #1f4d3a;
+  --t-forest-strong: #163828;
+  --t-forest-soft: #e4ede6;
+  --t-amber: #a4681f;
+  --t-amber-soft: #f3e6cf;
+  --t-rust: #a44328;
+  --t-rust-soft: #f3e0d6;
+  --t-gold: #d9a441;
+  --t-clay: #c1704e;
+
+  color-scheme: light;
+}
+
+.dark {
+  --t-cream: #15130e;
+  --t-cream-soft: #1b1811;
+  --t-panel: #1c1912;
+  --t-stage: #0d0b07;
+  --t-ink: #f1ecdd;
+  --t-ink-soft: #ab9f89;
+  --t-ink-faint: #746a58;
+  --t-line: #322c20;
+  --t-forest: #5b9c7c;
+  --t-forest-strong: #7fc0a0;
+  --t-forest-soft: #23342a;
+  --t-amber: #dba85a;
+  --t-amber-soft: #3a2c18;
+  --t-rust: #d8825f;
+  --t-rust-soft: #3a251c;
+  --t-gold: #e3b75c;
+  --t-clay: #d68f6e;
+
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+@keyframes toast-fade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+}
+
+.animate-toast-fade {
+  animation: toast-fade 2.2s ease forwards;
+}
