@@ -1,0 +1,271 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Kinetiq design system — a restrained clinical-SaaS token set.       */
+/* One accent (clinical blue), a neutral slate scale for structure,    */
+/* and a reserved four-color status system (info / success / warning / */
+/* danger) that is never reused for decoration. Everything is routed   */
+/* through a plain custom property so the app can re-theme at runtime  */
+/* by toggling the .dark class on <html>.                              */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-bg: var(--t-bg);
+  --color-bg-inset: var(--t-bg-inset);
+  --color-surface: var(--t-surface);
+  --color-surface-hover: var(--t-surface-hover);
+  --color-border: var(--t-border);
+  --color-border-strong: var(--t-border-strong);
+
+  --color-ink: var(--t-ink);
+  --color-ink-soft: var(--t-ink-soft);
+  --color-ink-faint: var(--t-ink-faint);
+  --color-ink-inverse: var(--t-ink-inverse);
+
+  --color-primary: var(--t-primary);
+  --color-primary-strong: var(--t-primary-strong);
+  --color-primary-soft: var(--t-primary-soft);
+  --color-primary-softer: var(--t-primary-softer);
+
+  --color-success: var(--t-success);
+  --color-success-soft: var(--t-success-soft);
+  --color-warning: var(--t-warning);
+  --color-warning-soft: var(--t-warning-soft);
+  --color-danger: var(--t-danger);
+  --color-danger-soft: var(--t-danger-soft);
+  --color-info: var(--t-info);
+  --color-info-soft: var(--t-info-soft);
+
+  --color-sidebar: var(--t-sidebar);
+  --color-sidebar-border: var(--t-sidebar-border);
+  --color-sidebar-active: var(--t-sidebar-active);
+  --color-sidebar-ink: var(--t-sidebar-ink);
+  --color-sidebar-ink-soft: var(--t-sidebar-ink-soft);
+
+  /* The camera/video stage is intentionally always a fixed dark tone in
+     both app themes (like a photo card floating on the page), so its
+     foreground tones don't flip with .dark. */
+  --color-stage: #0b1220;
+  --color-stage-soft: #131c2e;
+  --color-stage-fg: #eef2f9;
+  --color-stage-fg-soft: rgba(238, 242, 249, 0.62);
+  --color-stage-line: rgba(238, 242, 249, 0.4);
+  --color-stage-accent: #59a7ff;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Inter Tight', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-md: 0 4px 10px rgba(16, 24, 40, 0.06), 0 2px 4px rgba(16, 24, 40, 0.04);
+  --shadow-lg: 0 12px 24px rgba(16, 24, 40, 0.08), 0 4px 8px rgba(16, 24, 40, 0.04);
+}
+
+:root {
+  --t-bg: #f6f7f9;
+  --t-bg-inset: #eef0f4;
+  --t-surface: #ffffff;
+  --t-surface-hover: #f9fafb;
+  --t-border: #e3e6eb;
+  --t-border-strong: #c9ced8;
+
+  --t-ink: #10151f;
+  --t-ink-soft: #566072;
+  --t-ink-faint: #8993a4;
+  --t-ink-inverse: #ffffff;
+
+  --t-primary: #2856d9;
+  --t-primary-strong: #1c3fa8;
+  --t-primary-soft: #e9eefc;
+  --t-primary-softer: #f4f7fd;
+
+  --t-success: #0f8a5f;
+  --t-success-soft: #e5f6ee;
+  --t-warning: #b3690a;
+  --t-warning-soft: #fbf0dd;
+  --t-danger: #c33636;
+  --t-danger-soft: #fbeaea;
+  --t-info: #2856d9;
+  --t-info-soft: #e9eefc;
+
+  --t-sidebar: #ffffff;
+  --t-sidebar-border: #e9ebef;
+  --t-sidebar-active: #eef2fc;
+  --t-sidebar-ink: #222833;
+  --t-sidebar-ink-soft: #6b7382;
+
+  color-scheme: light;
+}
+
+.dark {
+  --t-bg: #0c0f16;
+  --t-bg-inset: #10141d;
+  --t-surface: #141924;
+  --t-surface-hover: #1a2130;
+  --t-border: #262e3d;
+  --t-border-strong: #333d4f;
+
+  --t-ink: #edf0f5;
+  --t-ink-soft: #a1abc0;
+  --t-ink-faint: #6c7590;
+  --t-ink-inverse: #10151f;
+
+  --t-primary: #5b86f0;
+  --t-primary-strong: #7fa0f5;
+  --t-primary-soft: #1c2740;
+  --t-primary-softer: #161d2e;
+
+  --t-success: #33b785;
+  --t-success-soft: #113328;
+  --t-warning: #e0a13a;
+  --t-warning-soft: #3a2c14;
+  --t-danger: #e2685f;
+  --t-danger-soft: #3a1f1e;
+  --t-info: #5b86f0;
+  --t-info-soft: #1c2740;
+
+  --t-sidebar: #10141d;
+  --t-sidebar-border: #232a38;
+  --t-sidebar-active: #1c2740;
+  --t-sidebar-ink: #edf0f5;
+  --t-sidebar-ink-soft: #8b93a8;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-strong);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbars — thin and unobtrusive, matching the token system. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 8px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion — small, purposeful, respects reduced-motion.                */
+/* ------------------------------------------------------------------ */
+@keyframes toast-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-fade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  8% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-toast-fade {
+  animation: toast-fade 2.4s ease forwards;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--color-border) 25%, var(--color-bg-inset) 37%, var(--color-border) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.6s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
